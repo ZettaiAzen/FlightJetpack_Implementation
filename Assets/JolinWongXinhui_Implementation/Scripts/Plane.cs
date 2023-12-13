@@ -392,19 +392,19 @@ public class Plane : MonoBehaviour
 
     // UI
 
-    //[SerializeField] 
-    //TextMeshProUGUI velocityUI;
-    //[SerializeField]
-    //TextMeshProUGUI GForceUI;
-    //[SerializeField]
-    //Slider throttleUI;
+    [SerializeField]
+    TextMeshProUGUI velocityUI;
+    [SerializeField]
+    TextMeshProUGUI GForceUI;
+    [SerializeField]
+    Slider throttleUI;
 
-    //void LateUpdate()
-    //{
-    //    velocityUI.text = "Velocity: " + Mathf.Round(localVelocity.z);
-    //    GForceUI.text = "G-Force: " + Mathf.Round(localGForce.y / 9.81f);
-    //    throttleUI.value = throttle;
-    //}
+    void LateUpdate()
+    {
+        velocityUI.text = "Velocity: " + Mathf.Round(localVelocity.z);
+        GForceUI.text = "G-Force: " + Mathf.Round(localGForce.y / 9.81f);
+        throttleUI.value = throttle;
+    }
 
 
 }
