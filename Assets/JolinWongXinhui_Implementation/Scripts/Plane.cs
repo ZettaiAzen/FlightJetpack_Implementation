@@ -6,6 +6,8 @@ using UnityEngine.UI;
 
 public class Plane : MonoBehaviour
 {
+    // code adapted from: https://youtu.be/7vAHo2B1zLc?si=LJOAjzEaOgHnRvJW
+
     Rigidbody plane_rb;
 
     Vector3 controlInput;
