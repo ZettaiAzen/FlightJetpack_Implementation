@@ -29,7 +29,7 @@ public class Plane : MonoBehaviour
     float throttle; // percentage of max thrust
     float throttleIncrement = 0.1f; // how much the throttle can increase at a time
     [SerializeField]
-    float maxThrust = 4000f; // max thrust that can be applied to plane
+    float maxThrust = 411411f; // max thrust that can be applied to plane
     bool breaksEnabled;
 
     [SerializeField]
@@ -103,9 +103,8 @@ public class Plane : MonoBehaviour
             throttle -= throttleIncrement;
 
             // if player tries to lower throttle more than min, breaks will activate
-            if(throttle == 0f)
+            if(throttle <= 0f)
             {
-                Debug.Log("breaks");
                 breaksEnabled = true;
             }
         }
@@ -164,7 +163,7 @@ public class Plane : MonoBehaviour
         }
     }
 
-    // similar to Unity's Vector3.Scale but this allows there to be independant scaling for the different directions of movement for drag calculation
+    // similar to Unity's Vector3.Scale but this allows there to be independant scaling for the different directions of movement for drag or GForce calculation
     public static Vector3 Scale6(Vector3 value, float posX, float negX, float posY, float negY, float posZ, float negZ)
     {
         Vector3 result = value;
@@ -386,7 +385,6 @@ public class Plane : MonoBehaviour
     void OnCollisionEnter(Collision collision)
     {
         // if collides with anything, die
-        Debug.Log("UWA IM DEAD");
         this.gameObject.SetActive(false);
 
     }
