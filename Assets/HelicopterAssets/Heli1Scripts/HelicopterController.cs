@@ -8,10 +8,12 @@ using UnityEngine;
 //While this is more accurate to real life physics, it is also much more difficult to control hence why I have 2 implementations
 public class HelicopterController : MonoBehaviour
 {
-    private Rigidbody rigidbody;
+    private Rigidbody helicopterRB;
+    [SerializeField]private float effectiveHeight = 30f;
 
     [SerializeField] private float responsiveness = 200f;
-    [SerializeField] private float throttleAmount = 25f;
+    [SerializeField] private float throttleAmount = 0.1f;
+    [SerializeField] private float maxThrust = 5f;
     private float throttle;
 
     private float roll;
@@ -23,14 +25,14 @@ public class HelicopterController : MonoBehaviour
 
     private void Awake()
     {
-        rigidbody = GetComponent<Rigidbody>();
+        helicopterRB = GetComponent<Rigidbody>();
     }
 
     private void Update()
     {
         HandleInputs();
 
-        rotorsTransform.Rotate(Vector3.up * throttle * rotorSpeedModifer);
+        rotorsTransform.Rotate(Vector3.up * (maxThrust * throttle) * rotorSpeedModifer);
     }
 
     //This needs to be in FixedUpdate() because FixedUpdate can handle physics better than Update()
@@ -38,18 +40,19 @@ public class HelicopterController : MonoBehaviour
     //So this way more consistent than Update(), it was designed that way
     private void FixedUpdate()
     {
-        rigidbody.AddForce(transform.up * throttle, ForceMode.Impulse);
+        helicopterRB.AddForce(transform.up * throttle, ForceMode.Impulse);
 
-        rigidbody.AddTorque(transform.right * pitch * responsiveness);
-        rigidbody.AddTorque(-transform.forward * roll * responsiveness);
-        rigidbody.AddTorque(transform.up * yaw * responsiveness);
+        helicopterRB.AddTorque(transform.right * pitch * responsiveness);
+        helicopterRB.AddTorque(-transform.forward * roll * responsiveness);
+        helicopterRB.AddTorque(transform.up * yaw * responsiveness);
+
     }
 
     private void HandleInputs()
     {
-        roll = Input.GetAxis("Roll");
-        pitch = Input.GetAxis("Pitch");
-        yaw = Input.GetAxis("Yaw");
+        roll = Input.GetAxisRaw("Roll");
+        pitch = Input.GetAxisRaw("Pitch");
+        yaw = Input.GetAxisRaw("Yaw");
 
         if (Input.GetKey(KeyCode.Space))
         {
