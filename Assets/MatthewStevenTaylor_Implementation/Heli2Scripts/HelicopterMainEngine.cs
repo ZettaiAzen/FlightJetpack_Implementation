@@ -7,7 +7,7 @@ using UnityEngine.Experimental.Rendering;
 //This was the second implementation I created for the helicopter
 //This implementation is designed to be much more controlled than the other one which has no safety
 //This also simulates the physics as how they would theoretically look with proper controls
-//I've had to do this because I've been unable to combine the 2 implementations together into 1 and I ran out of time :c
+//I created a final implementation that attempts to combine the physics of the first implementation with the safety features and polish of this implementation
 public class HelicopterMainEngine : MonoBehaviour
 {
     //Calling the rigidbody component of the helicopter to apply forces

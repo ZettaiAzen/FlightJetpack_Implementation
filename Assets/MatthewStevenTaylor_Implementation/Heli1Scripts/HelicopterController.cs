@@ -5,7 +5,7 @@ using UnityEngine;
 //This was the first implementation I created for the helicopter
 //This implementation does not have any safety measures such as the hovering
 //Instead, this directly combined the helicopter lift and tilt into a single movement method
-//While this is more accurate to real life physics, it is also much more difficult to control hence why I have 2 implementations
+//While this is more accurate to real life physics, it is also much more difficult to control hence why I made a 2nd implementation
 public class HelicopterController : MonoBehaviour
 {
     private Rigidbody rigidbody;
