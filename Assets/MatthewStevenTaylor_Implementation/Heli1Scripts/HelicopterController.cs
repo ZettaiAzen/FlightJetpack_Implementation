@@ -47,10 +47,12 @@ public class HelicopterController : MonoBehaviour
 
     private void HandleInputs()
     {
+        //Gets user inputs
         roll = Input.GetAxis("Roll");
         pitch = Input.GetAxis("Pitch");
         yaw = Input.GetAxis("Yaw");
 
+        //Throttle inputs to ascend and descend
         if (Input.GetKey(KeyCode.Space))
         {
             throttle += Time.deltaTime * throttleAmount;
@@ -59,6 +61,7 @@ public class HelicopterController : MonoBehaviour
             throttle -= Time.deltaTime * throttleAmount;
         }
 
+        //Because throttle is a percentage value, it is clamped between 0 & 100%
         throttle = Mathf.Clamp(throttle, 0f, 100f);
     }
 }
